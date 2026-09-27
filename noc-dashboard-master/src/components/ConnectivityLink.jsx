@@ -1,0 +1,7 @@
+export function ConnectivityLink({ item, isOnline, onToggle }) {
+  const latencia = isOnline ? item.latencia : "TIMEOUT";
+  const usoBanda = isOnline ? 70 : 0;
+  return (
+    <div className="col-12 col-md-6 col-xl-3 mb-4"><div className={`card glass-card h-100 ${!isOnline ? "border-danger" : "border-info"}`}><div className="card-body d-flex flex-column justify-content-between"><div className="d-flex justify-content-between align-items-start mb-2"><div><h6 className="mb-0 fw-bold d-flex align-items-center"><span className={`led-indicator ${isOnline ? "led-up" : "led-down"}`} />{item.tipo}</h6><small className="text-secondary d-block mt-1">Alvo: {item.target}</small></div><div className="text-end"><small className="text-secondary d-block">Latência</small><strong className={isOnline ? "text-success" : "text-danger"}>{latencia}</strong></div></div><div className="mb-4"><div className="d-flex justify-content-between small text-secondary"><span>Tráfego de Dados</span><span>{usoBanda}%</span></div><div className="progress-tech"><div className="progress-tech-bar bg-info" style={{ width: `${usoBanda}%` }} /></div></div><button onClick={() => onToggle(item.id)} className={`btn btn-sm w-100 fw-bold shadow-sm ${isOnline ? "btn-outline-danger" : "btn-success"}`}>{isOnline ? "Simular Queda" : "Restaurar Conexão"}</button></div></div></div>
+  );
+}
